@@ -16,7 +16,6 @@
         .school-location { font-size: 0.9rem; opacity: 0.9; margin-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 8px; }
         .project-title { font-size: 1.3rem; font-weight: bold; color: #ffe082; }
 
-        /* ભાષા પસંદ કરવાનો સેક્શન */
         .lang-select-box {
             margin-bottom: 10px;
             display: flex;
@@ -35,7 +34,6 @@
             outline: none;
         }
 
-        /* ક્રેડિટ્સ બાર CSS */
         .credits-bar {
             background: #ffffff;
             width: 100%;
@@ -105,7 +103,6 @@
             font-weight: 800;
         }
 
-        /* Weather and Calculator Cards */
         .feature-card {
             background: #ffffff;
             border-radius: 14px;
@@ -163,7 +160,6 @@
         .info-title { font-weight: bold; color: #1b5e20; margin-bottom: 5px; }
         .info-text { font-size: 0.9rem; color: #37474f; line-height: 1.4; }
 
-        /* Modal (Popup) CSS */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -233,13 +229,12 @@
             white-space: pre-line;
         }
 
-        #error-log { color: #d32f2f; margin-top: 10px; font-weight: bold; font-size: 0.9rem; }
+        #error-log { color: #d32f2f; margin-top: 10px; font-weight: bold; font-size: 0.9rem; word-break: break-all; }
         .footer { margin-top: 15px; font-size: 0.85rem; color: #666; text-align: center; }
     </style>
 </head>
 <body>
 
-    <!-- ભાષા એનિમેશન અને સિલેક્શન -->
     <div class="lang-select-box">
         <select id="lang-select" class="lang-select" onchange="changeLanguage()">
             <option value="gu" selected>🌐 ગુજરાતી</option>
@@ -254,7 +249,6 @@
         <div class="project-title" id="txt-project-title">🌱 AI ખેડૂત મિત્ર (મગફળી પાક રોગ નિદાન)</div>
     </div>
 
-    <!-- ક્રેડિટ્સ વિભાજન -->
     <div class="credits-bar">
         <div class="credits-section mentor-card">
             <span class="mentor-badge" id="txt-mentor-badge">👨‍🏫 માર્ગદર્શક:</span>
@@ -273,7 +267,6 @@
         </div>
     </div>
 
-    <!-- ☀️ ૧. લાઈવ હવામાન અને પાક રોગ આગાહી વિજેટ -->
     <div class="feature-card">
         <div class="feature-title">☀️ <span id="txt-weather-title">હવામાન અને પાક સલાહ (Weather Advisory)</span></div>
         <div style="font-size: 0.9rem; color: #444;" id="weather-info">
@@ -282,7 +275,6 @@
         </div>
     </div>
 
-    <!-- 🧪 ૨. જમીનનું pH અને ખાતર કેલ્ક્યુલેટર -->
     <div class="feature-card">
         <div class="feature-title">🧪 <span id="txt-calc-title">ખાતર કેલ્ક્યુલેટર (Fertilizer Calculator)</span></div>
         <div style="font-size: 0.85rem; color: #555;" id="txt-calc-desc">તમારા ખેતરનું ક્ષેત્રફળ (વીઘામાં) નાખો:</div>
@@ -310,10 +302,7 @@
         <div id="results-title" class="results-title" style="display:none;"><span id="txt-analysis-title">📊 રોગનું વિશ્લેષણ (Analysis):</span></div>
         <div id="label-container"></div>
 
-        <!-- 🔊 વોઇસ આસિસ્ટન્ટ બટન -->
         <button id="voice-btn" class="btn btn-voice" onclick="speakAnalysis()">🔊 <span id="txt-voice-btn">માર્ગદર્શન સાંભળો (Voice Assistant)</span></button>
-        
-        <!-- 📲 વોટ્સએપ શેર બટન -->
         <button id="whatsapp-btn" class="btn btn-whatsapp" onclick="shareOnWhatsApp()">📲 <span id="txt-wa-btn">વોટ્સએપ પર રિપોર્ટ મોકલો</span></button>
 
         <div id="treatment-card" class="info-card treatment-card">
@@ -326,13 +315,11 @@
             <div id="prevention-text" class="info-text">--</div>
         </div>
 
-        <!-- વધુ જાણો બટન -->
         <button id="more-info-btn" class="btn btn-more" onclick="openModal()">ℹ️ <span id="txt-more-btn">વધુ જાણો (વિગતવાર માર્ગદર્શન)</span></button>
 
         <div id="error-log"></div>
     </div>
 
-    <!-- Popup Modal Box -->
     <div id="info-modal" class="modal-overlay">
         <div class="modal-card">
             <div class="modal-header">
@@ -369,7 +356,6 @@
         let currentTopClass = "";
         let currentLang = "gu";
 
-        /* ત્રણેય ભાષાઓમાં UI શબ્દો */
         const translations = {
             gu: {
                 schoolName: "🏫 આંતરોલ પ્રાથમિક શાળા",
@@ -463,7 +449,6 @@
             }
         };
 
-        /* ત્રણેય ભાષાઓમાં રોગ સંબંધિત ડેટા */
         const diseaseDataMulti = {
             gu: {
                 "Healthy Leaf": {
@@ -578,7 +563,6 @@
             }
         };
 
-        /* ભાષા બદલવાની મુખ્ય લીંકિંગ મેથડ */
         function changeLanguage() {
             currentLang = document.getElementById("lang-select").value;
             const t = translations[currentLang];
@@ -609,21 +593,17 @@
             document.getElementById("txt-modal-step3").innerText = t.modalStep3;
             document.getElementById("txt-footer").innerText = t.footer;
 
-            // જો પરિણામ લાઈવ હોય તો ભાષા પ્રમાણે ટેક્સ્ટ અપડેટ કરો
             if (currentTopClass !== "") {
                 updateOutputCards();
             }
 
-            // ખાતરનું કેલ્ક્યુલેશન પણ અપડેટ કરો
             if(document.getElementById("vigha-input").value) {
                 calculateFertilizer();
             }
         }
 
-        /* મેળવેલી ભાષા મુજબ ડેટા મેળવવાનું હેલ્પર ફંકશન */
         function getDiseaseInfo(className) {
             const langData = diseaseDataMulti[currentLang] || diseaseDataMulti["gu"];
-            
             let key = "Default";
             const nameLower = className.toLowerCase();
             
@@ -659,10 +639,15 @@
 
         async function initModel() {
             if (!model) {
-                const modelURL = URL + "model.json";
-                const metadataURL = URL + "metadata.json";
-                model = await tmImage.load(modelURL, metadataURL);
-                maxPredictions = model.getTotalClasses();
+                try {
+                    const modelURL = URL + "model.json";
+                    const metadataURL = URL + "metadata.json";
+                    model = await tmImage.load(modelURL, metadataURL);
+                    maxPredictions = model.getTotalClasses();
+                } catch(e) {
+                    document.getElementById("error-log").innerHTML = "⚠️ મોડેલ લોડ થવામાં ભૂલ આવી. ચકાસો કે 'my_model' ફોલ્ડર અને ફાઈલો હાજર છે.";
+                    throw e;
+                }
             }
         }
 
@@ -690,7 +675,7 @@
                 };
             } catch (err) {
                 console.error(err);
-                errorDiv.innerHTML = "કૅમેરા શરુ ન થઈ શક્યો. લિંક <b>HTTPS</b> વાળી છે કે નહીં ચકાસો.";
+                errorDiv.innerHTML = "કૅમેરા શરુ ન થઈ શક્યો. લિંક HTTPS વાળી છે કે નહીં ચકાસો.";
             }
         }
 
@@ -701,39 +686,48 @@
             }
         }
 
+        /* 🟢 સુધારેલું Photo Upload Function */
         async function handleFileUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
+            const file = event.target.files[0];
+            const errorDiv = document.getElementById("error-log");
+            errorDiv.innerHTML = "";
 
-    // કૅમેરા ચાલુ હોય તો બંધ કરવો
-    isCameraActive = false;
-    if (videoElement.srcObject) {
-        const tracks = videoElement.srcObject.getTracks();
-        tracks.forEach(track => track.stop());
-        videoElement.srcObject = null;
-    }
-    videoElement.style.display = "none";
+            if (!file) return;
 
-    const imgElement = document.getElementById("preview-img");
-    
-    // નવો ફોટો લોડ કરવા માટે FileReader નો ઉપયોગ (વધુ સુરક્ષિત)
-    const reader = new FileReader();
-    reader.onload = async function(e) {
-        imgElement.src = e.target.result;
-        imgElement.style.display = "block";
+            // ૧. કૅમેરા જો ચાલુ હોય તો બંધ કરવો
+            isCameraActive = false;
+            if (videoElement.srcObject) {
+                const tracks = videoElement.srcObject.getTracks();
+                tracks.forEach(track => track.stop());
+                videoElement.srcObject = null;
+            }
+            videoElement.style.display = "none";
 
-        // ફોટો સંપૂર્ણ લોડ થાય તે પછી જ મોડેલ ઇનિશિયલાઇઝ કરી પ્રિડિક્શન કરવું
-        imgElement.onload = async function() {
-            await initModel();
-            setupUI();
-                await predict(imgElement);
-        };
-    };
-    reader.readAsDataURL(file);
-    
-    // એક જ ફોટો ફરીથી સિલેક્ટ કરી શકાય તે માટે ઇનપુટ વેલ્યુ રીસેટ કરવી
-    event.target.value = '';
-}
+            const imgElement = document.getElementById("preview-img");
+
+            // ૨. FileReader વડે ફોટો રીડ કરવો
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                imgElement.src = e.target.result;
+                imgElement.style.display = "block";
+
+                // ૩. ફોટો બ્રાઉઝરમાં સંપૂર્ણ લોડ થયા બાદ જ મોડેલ ચલાવવું
+                imgElement.onload = async function() {
+                    try {
+                        await initModel();
+                        setupUI();
+                        await predict(imgElement);
+                    } catch(err) {
+                        console.error(err);
+                        errorDiv.innerHTML = "ઈમેજ એનાલિસિસમાં ભૂલ આવી: " + err.message;
+                    }
+                };
+            };
+            reader.readAsDataURL(file);
+
+            // ૪. ઇનપુટ રીસેટ કરવું જેથી એકનો એક ફોટો ફરી પસંદ કરી શકાય
+            event.target.value = '';
+        }
 
         function setupUI() {
             document.getElementById("results-title").style.display = "block";
@@ -757,34 +751,30 @@
         }
 
         async function predict(imageSource) {
-    if (!model) return;
-    
-    // HTML Image અથવા Video બંનેમાંથી પ્રોપર પ્રિડિક્શન મેળવવું
-    const prediction = await model.predict(imageSource);
-    let topClass = "";
-    let highestProb = 0;
+            if (!model) return;
 
-    for (let i = 0; i < maxPredictions; i++) {
-        const className = prediction[i].className;
-        const prob = prediction[i].probability;
-        const percentage = (prob * 100).toFixed(0) + "%";
-        
-        const badge = labelContainer.childNodes[i];
-        if (badge) {
-            badge.querySelector(".class-name").innerText = className;
-            badge.querySelector(".class-pct").innerText = percentage;
-            badge.querySelector(".progress-bar-fill").style.width = percentage;
-        }
+            // Teachable machine prediction
+            const prediction = await model.predict(imageSource);
+            let topClass = "";
+            let highestProb = 0;
 
-        if (prob > highestProb) {
-            highestProb = prob;
-            topClass = className;
-        }
-    }
+            for (let i = 0; i < maxPredictions; i++) {
+                const className = prediction[i].className;
+                const prob = prediction[i].probability;
+                const percentage = (prob * 100).toFixed(0) + "%";
+                
+                const badge = labelContainer.childNodes[i];
+                if (badge) {
+                    badge.querySelector(".class-name").innerText = className;
+                    badge.querySelector(".class-pct").innerText = percentage;
+                    badge.querySelector(".progress-bar-fill").style.width = percentage;
+                }
 
-    currentTopClass = topClass;
-    updateOutputCards();
-}
+                if (prob > highestProb) {
+                    highestProb = prob;
+                    topClass = className;
+                }
+            }
 
             currentTopClass = topClass;
             updateOutputCards();
@@ -824,10 +814,9 @@
             document.getElementById("prevention-text").innerText = data.prevention;
         }
 
-        /* 🔊 Voice Assistant - બહુભાષી અવાજ માર્ગદર્શન */
         function speakAnalysis() {
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // જૂનો અવાજ રોકો
+                window.speechSynthesis.cancel();
 
                 const data = getDiseaseInfo(currentTopClass);
                 let textToSpeak = "";
@@ -848,7 +837,6 @@
 
                 const utterance = new SpeechSynthesisUtterance(textToSpeak);
                 
-                /* પસંદ કરેલી ભાષા મુજબ અવાજ ગોઠવો */
                 if (currentLang === "gu") {
                     utterance.lang = 'gu-IN';
                 } else if (currentLang === "hi") {
@@ -864,7 +852,6 @@
             }
         }
 
-        /* 📲 WhatsApp Share Function (Selected Language) */
         function shareOnWhatsApp() {
             const data = getDiseaseInfo(currentTopClass);
             let msg = "";
@@ -893,7 +880,6 @@
             window.open(`https://api.whatsapp.com/send?text=${encodedMsg}`, '_blank');
         }
 
-        /* Popup Modal Functions */
         function openModal() {
             const data = getDiseaseInfo(currentTopClass);
             const t = translations[currentLang];
